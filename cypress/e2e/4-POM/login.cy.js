@@ -5,7 +5,12 @@ import testData from '../../fixtures/credentials.json'
 
 
 
-describe('Login tests with POM', () => {
+describe('Login tests with POM', {
+    env: {
+        BASE_URL4: 'https://www.saucedemo.com/',
+    },
+}, () => {
+
     beforeEach(() => {
         LoginPage.open();
     })
@@ -29,11 +34,12 @@ describe('Login tests with POM', () => {
 
     })
 
-    it.only('Login with correct data from fixtures', () => {
+    it('Login with correct data from fixtures', () => {
         cy.fixture('credentials').then((userFixture) => {
             LoginPage.login(userFixture.userNames.correctUsername, userFixture.passwords.correctPassword);
-            cy.get('[data-test="title"]').should('have.text', 'Products');
+            cy.get('[data-test="title"]').debug().should('have.text', 'Products');
             cy.url().should('include', 'inventory.html');
+            cy.log(JSON.stringify(Cypress.env()));
         })
 
     })
