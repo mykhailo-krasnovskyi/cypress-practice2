@@ -3,8 +3,6 @@
 import LoginPage from "../../support/pageObjects/pages/LoginPage";
 import testData from '../../fixtures/credentials.json'
 
-
-
 describe('Login tests with POM', {
     env: {
         BASE_URL4: 'https://www.saucedemo.com/',
